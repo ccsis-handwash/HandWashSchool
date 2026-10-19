@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Global Handwashing Project</title>
+<meta name="description" content="Learn the proper steps and benefits of handwashing, and watch how it's done.">
+<meta name="theme-color" content="#0B2E4F">
+<meta property="og:title" content="Global Handwashing Project">
+<meta property="og:description" content="Proper handwashing steps, benefits, and a how-to video.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
+<noscript><style>.splash{display:none}body.lock{overflow:auto}</style></noscript>
+
+<style>
+/* =====================================================================
+   COLORS: change these to match your school colors
+   ===================================================================== */
+:root{
+  --basin:#0B2E4F;      /* deep navy: hero, timer, footer */
+  --water:#1597D6;      /* tap-water blue */
+  --foam:#F4FAFC;       /* page background */
+  --duck:#FFD43B;       /* buttons and highlights */
+  --lather:#B8EBDD;     /* video band */
+  --ink:#0F2740;        /* body text */
+  --muted:#4B6378;      /* secondary text */
+  --tile1:#CFF1E8; --tile2:#CDE9F8; --tile3:#FFF0B3; --tile4:#FFD9D2;  /* step cards */
+  --display:'Bricolage Grotesque','Trebuchet MS',system-ui,sans-serif;
+  --body:'Figtree',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--body);font-size:1.0625rem;line-height:1.55;color:var(--ink);background:var(--foam);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body.lock{overflow:hidden}
+h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.05;letter-spacing:-.015em}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+img{max-width:100%;display:block}
+:focus-visible{outline:3px solid var(--water);outline-offset:3px;border-radius:8px}
+.dark :focus-visible{outline-color:var(--duck)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:52px;padding:0 28px;border-radius:999px;font-family:var(--display);font-weight:700;font-size:1.125rem;text-decoration:none;transition:transform .15s ease,box-shadow .15s ease}
+.btn-duck{background:var(--duck);color:var(--basin);box-shadow:0 5px 0 #C9A21A}
+.btn-duck:hover{transform:translateY(-1px)}
+.btn-duck:active{transform:translateY(4px);box-shadow:0 1px 0 #C9A21A}
+
+/* ---------- language toggle ---------- */
+.lang{position:fixed;top:max(12px,env(safe-area-inset-top));right:12px;z-index:80;display:flex;background:rgba(11,46,79,.88);border-radius:999px;padding:4px;backdrop-filter:blur(6px)}
+.lang button{min-width:48px;min-height:36px;padding:0 12px;border-radius:999px;font-weight:700;font-size:.875rem;color:#fff}
+.lang button.on{background:var(--duck);color:var(--basin)}
+
+/* ---------- bubbles ---------- */
+.bubwrap{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.bub{position:absolute;bottom:-12%;border-radius:50%;
+  background:radial-gradient(circle at 30% 26%,rgba(255,255,255,.95) 0 7%,rgba(255,255,255,.18) 8% 45%,rgba(140,225,255,.16) 46% 75%,rgba(255,255,255,.4) 100%);
+  box-shadow:inset 0 0 10px rgba(255,255,255,.35);
+  animation:rise var(--d) linear var(--dl) infinite}
+@keyframes rise{0%{transform:translate(0,0)}50%{transform:translate(var(--sx),-55vh)}100%{transform:translate(0,-125vh)}}
+
+/* ---------- splash ---------- */
+.splash{position:fixed;inset:0;z-index:70;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;color:#fff;
+  background:var(--basin);
+  background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);
+  background-size:56px 56px;transition:opacity .5s ease,visibility .5s}
+.splash.hide{opacity:0;visibility:hidden}
+.splash-in{position:relative;max-width:460px}
+.splash .logo{margin:0 auto 22px;width:96px;height:96px}
+.splash h1{font-size:clamp(2.4rem,10vw,3.4rem);margin-bottom:14px}
+.splash p{margin-bottom:26px;color:#CFE6F5}
+.splash .note{margin:18px 0 0;font-size:.95rem}
+
+.logo{width:56px;height:56px;border-radius:50%;background:#fff;display:grid;place-items:center;overflow:hidden;flex:none;box-shadow:0 4px 14px rgba(0,0,0,.22)}
+.logo img{width:100%;height:100%;object-fit:cover}
+.logo svg{width:62%;height:62%}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;color:#fff;background:var(--basin);
+  background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);
+  background-size:56px 56px;
+  padding:88px 0 132px;min-height:min(92svh,720px);display:flex;align-items:center}
+.hero-in{position:relative;max-width:1040px;margin:0 auto;padding:0 20px;width:100%}
+.brand{display:flex;align-items:center;gap:12px;margin-bottom:30px;font-weight:600;color:#DCEEFA;max-width:34ch;line-height:1.25}
+.proj{display:inline-block;margin-bottom:14px;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.12);font-weight:600;font-size:.95rem}
+.hero h1{font-size:clamp(2.9rem,12.5vw,6rem);max-width:11ch;margin-bottom:18px}
+.hero .tag{font-size:clamp(1.1rem,3.6vw,1.35rem);max-width:30ch;color:#DCEEFA;margin-bottom:30px}
+.cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.pill20{font-weight:700;padding:12px 18px;border-radius:999px;border:2px dashed rgba(255,255,255,.45)}
+.wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:76px;display:block}
+
+/* ---------- sections ---------- */
+.sec{padding:64px 0 24px}
+.sec h2,.videoband h2{font-size:clamp(2rem,7vw,3.2rem);margin-bottom:10px;max-width:16ch}
+.sec .sub,.videoband .sub{color:var(--muted);max-width:44ch;margin-bottom:26px}
+.videoband .sub{color:#27475F}
+
+/* ---------- steps carousel ---------- */
+.stepshead{display:flex;align-items:flex-end;justify-content:space-between;gap:16px}
+.arrows{display:none;gap:10px;margin-bottom:26px}
+.arrow{width:52px;height:52px;border-radius:50%;background:var(--basin);color:#fff;font-size:1.4rem;display:grid;place-items:center;transition:transform .15s}
+.arrow:hover{transform:scale(1.06)}
+.track{position:relative;display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 20px 22px;scroll-padding-left:20px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.track::-webkit-scrollbar{display:none}
+.step{flex:0 0 min(82%,330px);scroll-snap-align:start;background:var(--tile);border-radius:34px;padding:22px 22px 26px;min-height:330px;display:flex;flex-direction:column}
+.steptop{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:18px}
+.stepnum{font-family:var(--display);font-weight:800;font-size:4.6rem;line-height:.85;color:var(--basin)}
+.stepart{width:104px;height:104px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:3.4rem;overflow:hidden;box-shadow:0 6px 16px rgba(11,46,79,.12)}
+.stepart img{width:100%;height:100%;object-fit:cover}
+.step h3{font-size:1.65rem;margin-bottom:8px}
+.step p{color:#27475F}
+.dots{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:2px 0 30px}
+.dot{width:12px;height:12px;border-radius:50%;background:#C6DAE6;transition:all .2s}
+.dot.on{background:var(--basin);width:30px;border-radius:999px}
+
+/* ---------- timer ---------- */
+.timer{display:flex;align-items:center;gap:22px;background:var(--basin);color:#fff;border-radius:34px;padding:26px;flex-wrap:wrap}
+.ringwrap{position:relative;width:112px;height:112px;flex:none}
+.ring{width:100%;height:100%}
+.trk{fill:none;stroke:rgba(255,255,255,.18);stroke-width:8}
+.fg{fill:none;stroke:var(--duck);stroke-width:8;stroke-linecap:round;stroke-dasharray:276.46;stroke-dashoffset:0;transition:stroke-dashoffset 1s linear}
+.timernum{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:2.6rem}
+.timertxt{flex:1 1 220px}
+.timertxt h3{font-size:1.6rem;margin-bottom:6px}
+.timertxt p{color:#CFE6F5;margin-bottom:14px}
+
+/* ---------- video ---------- */
+.videoband{background:var(--lather);margin-top:52px;padding:60px 0 64px}
+.videoband h2{color:var(--basin)}
+.vframe{position:relative;aspect-ratio:16/9;border-radius:30px;overflow:hidden;background:var(--basin);box-shadow:0 18px 40px rgba(11,46,79,.25)}
+.vframe iframe,.vframe video{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000}
+.vplace{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:#CFE6F5;font-weight:600;text-align:center;padding:16px}
+.vplay{width:78px;height:78px;border-radius:50%;background:var(--duck);display:grid;place-items:center}
+.vplay svg{width:30px;height:30px;margin-left:5px}
+
+/* ---------- benefits ---------- */
+.benefits{list-style:none;border-top:2px solid var(--basin);margin-bottom:26px}
+.ben{display:grid;grid-template-columns:64px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid #BFD5E2;align-items:start}
+.benico{width:56px;height:56px;border-radius:18px;background:var(--tile2);display:grid;place-items:center;font-size:1.8rem}
+.ben:nth-child(2n) .benico{background:var(--tile3)}
+.ben:nth-child(3n) .benico{background:var(--tile1)}
+.ben h3{font-size:1.35rem;margin-bottom:4px}
+.ben p{color:var(--muted);max-width:52ch}
+.fact{background:var(--tile3);border-radius:26px;padding:22px 24px;font-size:1.05rem;max-width:62ch}
+.fact b{font-family:var(--display);font-weight:800}
+.fact small{display:block;margin-top:8px;color:#5b5420}
+
+/* ---------- moments ---------- */
+.moments{list-style:none;display:flex;flex-wrap:wrap;gap:12px}
+.chip{display:flex;align-items:center;gap:10px;background:#fff;border:2px solid var(--basin);border-radius:999px;padding:10px 20px 10px 12px;font-weight:600}
+.chip span{font-size:1.5rem;line-height:1}
+
+/* ---------- closing ---------- */
+.closing{position:relative;margin-top:72px;background:var(--basin);color:#fff;padding:72px 0 40px;overflow:hidden;
+  background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:56px 56px}
+.closing h2{position:relative;font-size:clamp(2.2rem,8.5vw,4.2rem);max-width:15ch;margin-bottom:46px}
+.foot{position:relative;display:flex;align-items:center;gap:12px;color:#CFE6F5;font-size:.95rem;border-top:1px solid rgba(255,255,255,.2);padding-top:22px}
+.foot b{color:#fff;display:block}
+
+/* ---------- music + toast ---------- */
+.fab{position:fixed;right:16px;bottom:max(16px,env(safe-area-inset-bottom));z-index:60;width:58px;height:58px;border-radius:50%;background:var(--duck);color:var(--basin);display:grid;place-items:center;font-size:1.5rem;box-shadow:0 6px 0 #C9A21A,0 10px 24px rgba(0,0,0,.25)}
+.fab.on::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:3px solid var(--duck);animation:pulse 1.8s ease-out infinite}
+@keyframes pulse{0%{transform:scale(.9);opacity:.9}100%{transform:scale(1.35);opacity:0}}
+.toast{position:fixed;left:50%;bottom:90px;transform:translate(-50%,20px);background:var(--basin);color:#fff;padding:12px 18px;border-radius:14px;opacity:0;pointer-events:none;transition:all .25s;z-index:90;max-width:88vw;text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- larger screens ---------- */
+@media (min-width:760px){
+  .arrows{display:flex}
+  .step{flex-basis:320px}
+  .track{padding-left:max(20px,calc((100vw - 1040px)/2 + 20px));scroll-padding-left:max(20px,calc((100vw - 1040px)/2 + 20px))}
+  .ben{grid-template-columns:72px 1fr;padding:24px 0}
+  .timer{padding:30px 34px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .bub{animation:none;bottom:var(--rb);opacity:.6}
+  .fab.on::after{animation:none}
+  .fg{transition:none}
+}
+</style>
+</head>
+
+<body class="lock">
+
+<!-- language toggle -->
+<div class="lang" role="group" aria-label="Language">
+  <button type="button" data-l="en">EN</button>
+  <button type="button" data-l="fil">FIL</button>
+</div>
+
+<!-- splash: the tap here also lets the browser play music with sound -->
+<div class="splash dark" id="splash">
+  <div class="bubwrap" id="splashBubs"></div>
+  <div class="splash-in">
+    <div class="logo" id="splashLogo"></div>
+    <h1 data-t="title"></h1>
+    <p data-t="tagline"></p>
+    <button class="btn btn-duck" id="startBtn" type="button" data-t="start"></button>
+    <p class="note" data-t="splashNote"></p>
+  </div>
+</div>
+
+<!-- hero -->
+<header class="hero dark" id="top">
+  <div class="bubwrap" id="heroBubs"></div>
+  <div class="hero-in">
+    <div class="brand"><div class="logo" id="heroLogo"></div><span id="schoolName"></span></div>
+    <p class="proj" id="projName"></p>
+    <h1 data-t="title"></h1>
+    <p class="tag" data-t="tagline"></p>
+    <div class="cta">
+      <a class="btn btn-duck" href="#steps" data-t="cta"></a>
+      <span class="pill20" data-t="chip"></span>
+    </div>
+  </div>
+  <svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0,44 C220,92 470,2 720,34 C980,68 1210,92 1440,40 L1440,90 L0,90 Z" fill="#F4FAFC"/></svg>
+</header>
+
+<main>
+  <!-- steps -->
+  <section class="sec" id="steps">
+    <div class="wrap stepshead">
+      <div>
+        <h2 data-t="stepsTitle"></h2>
+        <p class="sub" data-t="stepsSub"></p>
+      </div>
+      <div class="arrows">
+        <button class="arrow" id="prevBtn" type="button">&#8592;</button>
+        <button class="arrow" id="nextBtn" type="button">&#8594;</button>
+      </div>
+    </div>
+    <div class="track" id="track"></div>
+    <div class="dots" id="dots"></div>
+
+    <div class="wrap">
+      <div class="timer dark">
+        <div class="ringwrap">
+          <svg class="ring" viewBox="0 0 100 100" aria-hidden="true">
+            <circle class="trk" cx="50" cy="50" r="44"/>
+            <circle class="fg" id="ringFg" cx="50" cy="50" r="44" transform="rotate(-90 50 50)"/>
+          </svg>
+          <div class="timernum" id="timerNum">20</div>
+        </div>
+        <div class="timertxt">
+          <h3 data-t="timerTitle"></h3>
+          <p id="timerMsg" aria-live="polite"></p>
+          <button class="btn btn-duck" id="timerBtn" type="button"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- video -->
+  <section class="videoband" id="video">
+    <div class="wrap">
+      <h2 data-t="videoTitle"></h2>
+      <p class="sub" data-t="videoSub"></p>
+      <div class="vframe" id="videoBox"></div>
+    </div>
+  </section>
+
+  <!-- benefits -->
+  <section class="sec" id="benefits">
+    <div class="wrap">
+      <h2 data-t="benTitle"></h2>
+      <p class="sub" data-t="benSub"></p>
+      <ul class="benefits" id="benList"></ul>
+      <p class="fact" id="factBox"></p>
+    </div>
+  </section>
+
+  <!-- key moments -->
+  <section class="sec" id="when">
+    <div class="wrap">
+      <h2 data-t="whenTitle"></h2>
+      <p class="sub" data-t="whenSub"></p>
+      <ul class="moments" id="momentList"></ul>
+    </div>
+  </section>
+</main>
+
+<footer class="closing dark">
+  <div class="bubwrap" id="footBubs"></div>
+  <div class="wrap" style="position:relative">
+    <h2 data-t="closing"></h2>
+    <div class="foot">
+      <div class="logo" id="footLogo"></div>
+      <div><b id="footSchool"></b><span id="footNote"></span></div>
+    </div>
+  </div>
+</footer>
+
+<button class="fab" id="fab" type="button" aria-pressed="false"><span id="fabIco" aria-hidden="true">&#128263;</span></button>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function(){
+'use strict';
+
+/* =====================================================================
+   CONFIG: put your own details here
+   ===================================================================== */
+var CONFIG = {
+  schoolName: "Calamba City Science Integrated School",
+  projectName: { en: "Global Handwashing Project", fil: "Global Handwashing Project" },
+  footerNote: { en: "Prepared by: [Team / Adviser name]", fil: "Inihanda ni/nina: [Pangalan ng koponan / adviser]" },
+  defaultLang: "en",                 // "en" or "fil"
+
+  logo: "C:\Users\valme\Downloads\HandWash\assets\ccsis logo.png",                          // e.g. "assets/logo.png"  (leave "" to use a water-drop icon)
+
+  video: {
+    youtubeId: "",                   // e.g. "dQw4w9WgXcQ" (the part after v= in a YouTube link)
+    file: "C:\Users\valme\Downloads\HandWash\assets\HandWashVid.mp4",                        // OR your own file, e.g. "assets/handwashing.mp4"
+    poster: ""                       // optional cover image for your own file
+  },
+
+  music: {
+    src: "C:\Users\valme\Downloads\HandWash\assets\HandWashMusic.mp3",                         // e.g. "assets/bgm.mp3" (use royalty-free music)
+    volume: 0.3                      // 0 to 1
+  },
+
+  /* Optional: replace the emoji on each step card with your own picture.
+     One path per step, in order. Leave "" to keep the emoji. */
+  stepImages: ["", "", "", "", "", "", "", ""]
+};
+
+/* =====================================================================
+   TEXT (English and Filipino)
+   ===================================================================== */
+var T = {
+  en: {
+    title: "Clean hands save lives",
+    tagline: "Learn the right way to wash your hands. It only takes 20 seconds.",
+    start: "Tap to start",
+    splashNote: "Turn your sound on for the full experience.",
+    cta: "Show the steps",
+    chip: "Scrub for 20 seconds",
+    stepsTitle: "Wash your hands the right way",
+    stepsSub: "Swipe the cards to follow each step.",
+    stepLabel: "Step",
+    timerTitle: "20-second scrub timer",
+    timerHint: "Press start, then scrub along with the steps.",
+    timerStart: "Start timer", timerStop: "Stop", timerAgain: "Go again",
+    timerRun: "Keep scrubbing!", timerDone: "Great job! Now rinse.",
+    videoTitle: "Watch how it's done",
+    videoSub: "A quick demonstration you can follow along with.",
+    videoSoon: "Video coming soon",
+    benTitle: "Why it matters",
+    benSub: "Five good reasons to make it a habit.",
+    fact: "Handwashing can prevent about <b>3 in 10</b> diarrhea-related illnesses and about <b>2 in 10</b> respiratory infections.<small>Source: U.S. Centers for Disease Control and Prevention (CDC).</small>",
+    whenTitle: "When to wash",
+    whenSub: "Make these moments your cue.",
+    closing: "Wash your hands. Protect yourself and others.",
+    prev: "Previous step", next: "Next step",
+    music: "Turn background music on or off",
+    noMusic: "Background music has not been added yet."
+  },
+  fil: {
+    title: "Malinis na kamay, ligtas na buhay",
+    tagline: "Alamin ang tamang paraan ng paghuhugas ng kamay. 20 segundo lang!",
+    start: "Pindutin para magsimula",
+    splashNote: "Buksan ang tunog para sa buong karanasan.",
+    cta: "Tingnan ang mga hakbang",
+    chip: "Kuskusin nang 20 segundo",
+    stepsTitle: "Tamang paghuhugas ng kamay",
+    stepsSub: "I-swipe ang mga card para sundan ang bawat hakbang.",
+    stepLabel: "Hakbang",
+    timerTitle: "20-segundong timer",
+    timerHint: "Pindutin ang simula, saka kuskusin kasabay ng mga hakbang.",
+    timerStart: "Simulan", timerStop: "Ihinto", timerAgain: "Ulitin",
+    timerRun: "Ituloy ang pagkuskos!", timerDone: "Magaling! Banlawan na.",
+    videoTitle: "Panoorin kung paano",
+    videoSub: "Maikling demo na puwede mong sabayan.",
+    videoSoon: "Malapit nang mapanood ang video",
+    benTitle: "Bakit ito mahalaga",
+    benSub: "Limang dahilan para gawin itong habit.",
+    fact: "Nakakaiwas ang paghuhugas ng kamay sa humigit-kumulang <b>3 sa 10</b> sakit na may kinalaman sa pagtatae at <b>2 sa 10</b> impeksyon sa respiratory.<small>Pinagmulan: U.S. Centers for Disease Control and Prevention (CDC).</small>",
+    whenTitle: "Kailan maghuhugas",
+    whenSub: "Gawing paalala ang mga sandaling ito.",
+    closing: "Maghugas ng kamay. Protektahan ang sarili at ang iba.",
+    prev: "Nakaraang hakbang", next: "Susunod na hakbang",
+    music: "Buksan o patayin ang background music",
+    noMusic: "Wala pang nakalagay na background music."
+  }
+};
+
+var STEPS = [
+  { icon: "\uD83D\uDEB0",
+    en: { t: "Wet your hands", d: "Use clean running water, then add enough soap to cover every part of your hands." },
+    fil: { t: "Basain ang kamay", d: "Gumamit ng malinis na umaagos na tubig, saka lagyan ng sapat na sabon ang buong kamay." } },
+  { icon: "\uD83D\uDC4F",
+    en: { t: "Rub your palms", d: "Rub your palms together until the soap makes a good lather." },
+    fil: { t: "Kuskusin ang mga palad", d: "Pagdikitin at kuskusin ang mga palad hanggang bumula ang sabon." } },
+  { icon: "\uD83E\uDD1A",
+    en: { t: "Backs of your hands", d: "Place one palm over the back of the other hand and rub. Switch hands." },
+    fil: { t: "Likod ng mga kamay", d: "Ipatong ang isang palad sa likod ng kabilang kamay at kuskusin. Palitan." } },
+  { icon: "\uD83D\uDE4F",
+    en: { t: "Between your fingers", d: "Press your palms together, interlace your fingers, and rub." },
+    fil: { t: "Pagitan ng mga daliri", d: "Pagdikitin ang mga palad, isiksik ang mga daliri sa isa't isa, at kuskusin." } },
+  { icon: "\uD83E\uDD1D",
+    en: { t: "Backs of your fingers", d: "Curl your fingers and rub the backs of them against the palm of your other hand." },
+    fil: { t: "Likod ng mga daliri", d: "Ikuyom ang mga daliri at kuskusin ang likod nito sa palad ng kabilang kamay." } },
+  { icon: "\uD83D\uDC4D",
+    en: { t: "Thumbs", d: "Clasp one thumb in the opposite palm and rotate it. Switch thumbs." },
+    fil: { t: "Mga hinlalaki", d: "Hawakan ang isang hinlalaki gamit ang kabilang palad at paikutin. Palitan." } },
+  { icon: "\uD83D\uDC85",
+    en: { t: "Fingertips and nails", d: "Rub your fingertips and nails in the palm of the other hand. Switch hands." },
+    fil: { t: "Dulo ng daliri at kuko", d: "Kuskusin ang dulo ng mga daliri at kuko sa palad ng kabilang kamay. Palitan." } },
+  { icon: "\uD83D\uDCA7",
+    en: { t: "Rinse and dry", d: "Rinse well with clean water, dry with a clean towel or tissue, and use it to close the tap." },
+    fil: { t: "Banlawan at patuyuin", d: "Banlawan nang mabuti, patuyuin gamit ang malinis na tuwalya o tissue, at gamitin ito sa pagsara ng gripo." } }
+];
+
+var BENEFITS = [
+  { icon: "\uD83E\uDDA0",
+    en: { t: "Stops germs from spreading", d: "Soap and water remove germs from your hands before they reach your eyes, nose, mouth, and food." },
+    fil: { t: "Pinipigilan ang pagkalat ng mikrobyo", d: "Inaalis ng sabon at tubig ang mikrobyo sa kamay bago pa ito makarating sa mata, ilong, bibig, at pagkain." } },
+  { icon: "\uD83C\uDFEB",
+    en: { t: "Fewer sick days", d: "Fewer infections mean fewer missed classes and more time to learn." },
+    fil: { t: "Mas kaunting liban sa klase", d: "Kapag bihira kang magkasakit, bihira ka ring liban sa klase at mas marami kang natututunan." } },
+  { icon: "\uD83D\uDC68\u200D\uD83D\uDC69\u200D\uD83D\uDC67",
+    en: { t: "Protects family and classmates", d: "Clean hands keep the people around you healthier too, especially the very young and the elderly." },
+    fil: { t: "Ligtas ang pamilya at mga kaklase", d: "Kapag malinis ang kamay mo, ligtas din ang mga nasa paligid mo, lalo na ang mga bata at matatanda." } },
+  { icon: "\uD83C\uDF5A",
+    en: { t: "Safer food", d: "Washing before you eat or cook keeps germs off your food." },
+    fil: { t: "Mas ligtas na pagkain", d: "Ang paghuhugas bago kumain o magluto ay pumipigil sa mikrobyo sa pagkain." } },
+  { icon: "\u2B50",
+    en: { t: "A habit that lasts", d: "A small daily habit with a big payoff for your health." },
+    fil: { t: "Gawing habit habambuhay", d: "Maliit na gawain araw-araw, malaking tulong sa kalusugan." } }
+];
+
+var MOMENTS = [
+  { icon: "\uD83C\uDF7D\uFE0F", en: "Before eating", fil: "Bago kumain" },
+  { icon: "\uD83D\uDEBB", en: "After using the toilet", fil: "Pagkagamit ng banyo" },
+  { icon: "\uD83E\uDD27", en: "After coughing or sneezing", fil: "Pagkatapos umubo o bumahing" },
+  { icon: "\u26BD", en: "After playing outside", fil: "Pagkatapos maglaro sa labas" },
+  { icon: "\uD83E\uDDD1\u200D\uD83C\uDF73", en: "Before preparing food", fil: "Bago maghanda ng pagkain" },
+  { icon: "\uD83E\uDDFD", en: "When your hands look dirty", fil: "Kapag marumi ang kamay" }
+];
+
+/* =====================================================================
+   CODE: you shouldn't need to edit below this line
+   ===================================================================== */
+var lang = CONFIG.defaultLang === "fil" ? "fil" : "en";
+var $ = function (id) { return document.getElementById(id); };
+var GAP = 14;
+
+/* ----- logo ----- */
+var DROP = '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4C24 4 10 20 10 29a14 14 0 0 0 28 0C38 20 24 4 24 4z" fill="#1597D6"/><path d="M18 30a6 6 0 0 0 6 6" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/></svg>';
+function fillLogos() {
+  ["splashLogo", "heroLogo", "footLogo"].forEach(function (id) {
+    $(id).innerHTML = CONFIG.logo ? '<img src="' + CONFIG.logo + '" alt="">' : DROP;
+  });
+}
+
+/* ----- bubbles ----- */
+function bubbles(host, n) {
+  for (var i = 0; i < n; i++) {
+    var b = document.createElement("i");
+    var s = 14 + Math.random() * 74;
+    b.className = "bub";
+    b.style.cssText = "width:" + s + "px;height:" + s + "px;left:" + (Math.random() * 100) + "%;" +
+      "--d:" + (15 + Math.random() * 16).toFixed(1) + "s;--dl:" + (-Math.random() * 22).toFixed(1) + "s;" +
+      "--sx:" + Math.round(Math.random() * 70 - 35) + "px;--rb:" + Math.round(Math.random() * 80) + "%";
+    host.appendChild(b);
+  }
+}
+
+/* ----- renderers ----- */
+function renderSteps() {
+  var track = $("track"), keep = track.scrollLeft, t = T[lang];
+  track.innerHTML = STEPS.map(function (s, i) {
+    var art = CONFIG.stepImages[i] ? '<img src="' + CONFIG.stepImages[i] + '" alt="">' : '<span aria-hidden="true">' + s.icon + '</span>';
+    return '<article class="step" style="--tile:var(--tile' + ((i % 4) + 1) + ')">' +
+      '<div class="steptop"><span class="stepnum" aria-label="' + t.stepLabel + ' ' + (i + 1) + '">' + (i + 1) + '</span>' +
+      '<div class="stepart">' + art + '</div></div>' +
+      '<h3>' + s[lang].t + '</h3><p>' + s[lang].d + '</p></article>';
+  }).join("");
+  $("dots").innerHTML = STEPS.map(function (_, i) {
+    return '<button class="dot" type="button" data-i="' + i + '" aria-label="' + t.stepLabel + ' ' + (i + 1) + '"></button>';
+  }).join("");
+  track.scrollLeft = keep;
+  updateDots();
+}
+function renderBenefits() {
+  $("benList").innerHTML = BENEFITS.map(function (b) {
+    return '<li class="ben"><span class="benico" aria-hidden="true">' + b.icon + '</span><div><h3>' + b[lang].t + '</h3><p>' + b[lang].d + '</p></div></li>';
+  }).join("");
+  $("factBox").innerHTML = T[lang].fact;
+}
+function renderMoments() {
+  $("momentList").innerHTML = MOMENTS.map(function (m) {
+    return '<li class="chip"><span aria-hidden="true">' + m.icon + '</span>' + m[lang] + '</li>';
+  }).join("");
+}
+
+/* ----- carousel ----- */
+function updateDots() {
+  var track = $("track"), cards = track.children;
+  if (!cards.length) return;
+  var base = cards[0].offsetLeft, best = 0, bd = 1e9;
+  for (var i = 0; i < cards.length; i++) {
+    var d = Math.abs(cards[i].offsetLeft - base - track.scrollLeft);
+    if (d < bd) { bd = d; best = i; }
+  }
+  var dots = $("dots").children;
+  for (var j = 0; j < dots.length; j++) dots[j].classList.toggle("on", j === best);
+}
+function goTo(i) {
+  var track = $("track"), cards = track.children;
+  track.scrollTo({ left: cards[i].offsetLeft - cards[0].offsetLeft, behavior: "smooth" });
+}
+function nudge(dir) {
+  var track = $("track");
+  track.scrollBy({ left: dir * (track.children[0].offsetWidth + GAP), behavior: "smooth" });
+}
+
+/* ----- timer ----- */
+var CIRC = 2 * Math.PI * 44, tState = "idle", tLeft = 20, tId = null;
+function updateTimerUI() {
+  var t = T[lang];
+  $("timerNum").textContent = tState === "done" ? "\u2713" : tLeft;
+  $("ringFg").style.strokeDasharray = CIRC.toFixed(2);
+  $("ringFg").style.strokeDashoffset = tState === "done" ? 0 : (CIRC * (1 - tLeft / 20)).toFixed(2);
+  $("timerMsg").textContent = tState === "idle" ? t.timerHint : tState === "run" ? t.timerRun : t.timerDone;
+  $("timerBtn").textContent = tState === "run" ? t.timerStop : tState === "done" ? t.timerAgain : t.timerStart;
+}
+function timerClick() {
+  if (tState === "run") { clearInterval(tId); tState = "idle"; tLeft = 20; updateTimerUI(); return; }
+  tState = "run"; tLeft = 20; updateTimerUI();
+  tId = setInterval(function () {
+    tLeft--;
+    if (tLeft <= 0) {
+      clearInterval(tId); tLeft = 0; tState = "done";
+      if (navigator.vibrate) navigator.vibrate(200);
+    }
+    updateTimerUI();
+  }, 1000);
+}
+
+/* ----- music ----- */
+var audio = null, musicOn = false, resumeAfterHidden = false, toastTimer = null;
+function toast(msg) {
+  var el = $("toast"); el.textContent = msg; el.classList.add("show");
+  clearTimeout(toastTimer); toastTimer = setTimeout(function () { el.classList.remove("show"); }, 2600);
+}
+function setMusic(on) {
+  musicOn = on;
+  $("fab").classList.toggle("on", on);
+  $("fab").setAttribute("aria-pressed", on ? "true" : "false");
+  $("fabIco").textContent = on ? "\uD83D\uDD0A" : "\uD83D\uDD07";
+}
+function playMusic() {
+  if (!audio) { toast(T[lang].noMusic); return; }
+  var p = audio.play();
+  if (p && p.then) p.then(function () { setMusic(true); }).catch(function () { setMusic(false); });
+  else setMusic(true);
+}
+function pauseMusic() { if (audio) audio.pause(); setMusic(false); }
+function initMusic() {
+  if (!CONFIG.music.src) return;
+  audio = new Audio(CONFIG.music.src);
+  audio.loop = true; audio.volume = CONFIG.music.volume; audio.preload = "auto";
+}
+document.addEventListener("visibilitychange", function () {
+  if (!audio) return;
+  if (document.hidden) { resumeAfterHidden = musicOn; if (musicOn) audio.pause(); }
+  else if (resumeAfterHidden) { audio.play().catch(function () {}); resumeAfterHidden = false; }
+});
+
+/* ----- video ----- */
+function buildVideo() {
+  var box = $("videoBox"), v = CONFIG.video;
+  if (v.youtubeId) {
+    var origin = /^https?:$/.test(location.protocol) ? "&origin=" + encodeURIComponent(location.origin) : "";
+    box.innerHTML = '<iframe id="ytFrame" src="https://www.youtube.com/embed/' + v.youtubeId +
+      '?rel=0&modestbranding=1&playsinline=1&enablejsapi=1' + origin +
+      '" title="Handwashing video" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>';
+    window.onYouTubeIframeAPIReady = function () {
+      new YT.Player("ytFrame", { events: { onStateChange: function (e) { if (e.data === 1) pauseMusic(); } } });
+    };
+    var s = document.createElement("script"); s.src = "https://www.youtube.com/iframe_api"; document.head.appendChild(s);
+  } else if (v.file) {
+    box.innerHTML = '<video controls playsinline preload="metadata"' + (v.poster ? ' poster="' + v.poster + '"' : "") + ' src="' + v.file + '"></video>';
+    box.querySelector("video").addEventListener("play", pauseMusic);
+  } else {
+    box.innerHTML = '<div class="vplace"><div class="vplay"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3l15 9-15 9z" fill="#0B2E4F"/></svg></div><span data-t="videoSoon"></span></div>';
+  }
+}
+
+/* ----- language ----- */
+function applyLang() {
+  var t = T[lang];
+  document.documentElement.lang = lang;
+  document.title = CONFIG.projectName[lang];
+  Array.prototype.forEach.call(document.querySelectorAll("[data-t]"), function (el) { el.textContent = t[el.getAttribute("data-t")]; });
+  $("schoolName").textContent = CONFIG.schoolName;
+  $("footSchool").textContent = CONFIG.schoolName;
+  $("footNote").textContent = CONFIG.footerNote[lang];
+  $("projName").textContent = CONFIG.projectName[lang];
+  $("fab").setAttribute("aria-label", t.music);
+  $("prevBtn").setAttribute("aria-label", t.prev);
+  $("nextBtn").setAttribute("aria-label", t.next);
+  Array.prototype.forEach.call(document.querySelectorAll(".lang button"), function (b) {
+    b.classList.toggle("on", b.getAttribute("data-l") === lang);
+  });
+  renderSteps(); renderBenefits(); renderMoments(); updateTimerUI();
+}
+
+/* ----- wire up ----- */
+fillLogos();
+buildVideo();
+initMusic();
+bubbles($("heroBubs"), 12);
+bubbles($("splashBubs"), 10);
+bubbles($("footBubs"), 7);
+applyLang();
+
+Array.prototype.forEach.call(document.querySelectorAll(".lang button"), function (b) {
+  b.addEventListener("click", function () { lang = b.getAttribute("data-l"); applyLang(); });
+});
+$("track").addEventListener("scroll", function () { window.requestAnimationFrame(updateDots); }, { passive: true });
+$("dots").addEventListener("click", function (e) {
+  var d = e.target.closest(".dot"); if (d) goTo(+d.getAttribute("data-i"));
+});
+$("prevBtn").addEventListener("click", function () { nudge(-1); });
+$("nextBtn").addEventListener("click", function () { nudge(1); });
+$("timerBtn").addEventListener("click", timerClick);
+$("fab").addEventListener("click", function () { musicOn ? pauseMusic() : playMusic(); });
+window.addEventListener("resize", updateDots);
+
+$("startBtn").addEventListener("click", function () {
+  var sp = $("splash");
+  sp.classList.add("hide");
+  document.body.classList.remove("lock");
+  if (audio) playMusic();
+  setTimeout(function () { if (sp.parentNode) sp.parentNode.removeChild(sp); }, 600);
+});
+})();
+</script>
+</body>
+</html>
